@@ -2,6 +2,7 @@ import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {primary} from '../../../../config/Pallete';
 import {LoginRepositoryImpl} from '../../data/repositories/LoginRepositoryImpl';
+import {GetUserData, GetUserParams} from '../../domain/usecases/GetUserData';
 import {AppButton} from '../components/AppButton';
 import TextFormField from '../components/TextFormField';
 
@@ -20,12 +21,12 @@ const ForgotPassword = () => (
 const LoginForm = () => {
   async function login() {
     let repository = new LoginRepositoryImpl();
-    let result = await repository.login('demo1', '123456');
+    let usecase = new GetUserData(repository);
+    let result = await usecase.call(new GetUserParams('demo1', '123456'));
     if (result.isRight()) {
-      console.log('Login successfull');
       console.log(result.value);
     } else {
-      console.log(result.value.message);
+      console.log(result.value);
     }
   }
   return (
