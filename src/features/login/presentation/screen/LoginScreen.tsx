@@ -23,8 +23,9 @@ const LoginForm = () => {
     let result = await repository.login('demo1', '123456');
     if (result.isRight()) {
       console.log('Login successfull');
+      console.log(result.value);
     } else {
-      console.log('Login fail');
+      console.log(result.value.message);
     }
   }
   return (
