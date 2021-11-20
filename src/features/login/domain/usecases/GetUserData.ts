@@ -15,7 +15,7 @@ export class GetUserParams implements Params {
 }
 
 export class GetUserData implements UseCase<User, GetUserParams> {
-  repository: LoginRepository;
+  private repository: LoginRepository;
   constructor(repository: LoginRepository) {
     this.repository = repository;
   }

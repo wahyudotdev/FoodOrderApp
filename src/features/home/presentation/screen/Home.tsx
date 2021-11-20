@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {AuthContext} from '../../../../core/context/AuthProvider';
 import FoodCard from '../component/FoodCard';
 import Searchbar from '../component/SearchBar';
 import Trivia from '../component/Trivia';
@@ -50,25 +51,28 @@ const FoodGroup = () => (
   </View>
 );
 
-const HomeScreen = () => (
-  <ScrollView style={styles.screen}>
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>Halo Luis,</Text>
-        <Text style={styles.caption}>Mau makan apa hari ini?</Text>
+const HomeScreen = () => {
+  const {user} = useContext(AuthContext);
+  return (
+    <ScrollView style={styles.screen}>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.title}>Halo {user.name},</Text>
+          <Text style={styles.caption}>Mau makan apa hari ini?</Text>
+        </View>
+        <Image
+          style={styles.profile_pict}
+          source={{
+            uri: 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg',
+          }}
+        />
       </View>
-      <Image
-        style={styles.profile_pict}
-        source={{
-          uri: 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg',
-        }}
-      />
-    </View>
-    <Searchbar hint={'Cari masakan'} fn={data => console.log(data)} />
-    <Trivia />
-    <Text style={styles.favorite}>Trending recipe</Text>
-    <FoodGroup />
-  </ScrollView>
-);
+      <Searchbar hint={'Cari masakan'} fn={data => console.log(data)} />
+      <Trivia />
+      <Text style={styles.favorite}>Trending recipe</Text>
+      <FoodGroup />
+    </ScrollView>
+  );
+};
 
 export default HomeScreen;

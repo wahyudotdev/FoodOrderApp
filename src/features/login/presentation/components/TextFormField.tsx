@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
 
 interface Props {
   hint: string;
+  onChange: (data: string) => void;
 }
 
 const TextFormField = (props: Props) => (
@@ -25,6 +26,7 @@ const TextFormField = (props: Props) => (
       selectionColor={primary}
       activeUnderlineColor={primary}
       style={styles.text_input}
+      onChangeText={props.onChange}
     />
   </View>
 );

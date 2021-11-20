@@ -12,5 +12,11 @@ module.exports = {
       },
     ],
     'react-native-paper/babel',
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true,
+      },
+    ],
   ],
 };

@@ -1,15 +1,22 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {AuthContext, UserLogin} from '../../../../core/context/AuthProvider';
 import {primary} from '../../../../config/Pallete';
-import {LoginRepositoryImpl} from '../../data/repositories/LoginRepositoryImpl';
-import {GetUserData, GetUserParams} from '../../domain/usecases/GetUserData';
 import {AppButton} from '../components/AppButton';
 import TextFormField from '../components/TextFormField';
+import {RootStackParamList} from 'Route';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Welcome'>;
 
 const LoginTitle = () => (
-  <View style={styles.login_title_container}>
-    <Text style={styles.login_title}>Login</Text>
-  </View>
+  <AuthContext.Consumer>
+    {({user}) => (
+      <View style={styles.login_title_container}>
+        <Text style={styles.login_title}>Login - {user.name}</Text>
+      </View>
+    )}
+  </AuthContext.Consumer>
 );
 
 const ForgotPassword = () => (
@@ -18,22 +25,27 @@ const ForgotPassword = () => (
   </View>
 );
 
-const LoginForm = () => {
+const LoginForm = (props: Props) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const {fn} = useContext(AuthContext);
+
   async function login() {
-    let repository = new LoginRepositoryImpl();
-    let usecase = new GetUserData(repository);
-    let result = await usecase.call(new GetUserParams('demo1', '123456'));
+    let result = await UserLogin(username, password);
     if (result.isRight()) {
-      console.log(result.value);
+      console.log('success');
+      fn(result.value);
+      props.navigation.navigate('Menu');
     } else {
-      console.log(result.value);
+      console.log('fail');
     }
   }
+
   return (
     <View style={styles.login_form}>
       <LoginTitle />
-      <TextFormField hint="Username" />
-      <TextFormField hint="Password" />
+      <TextFormField hint="Username" onChange={data => setUsername(data)} />
+      <TextFormField hint="Password" onChange={data => setPassword(data)} />
       <AppButton
         bgColor={'white'}
         hint="Masuk"
@@ -60,7 +72,7 @@ const LoginForm = () => {
   );
 };
 
-const LoginScreen = () => {
+const LoginScreen = (props: Props) => {
   return (
     <ImageBackground
       style={styles.image}
@@ -69,7 +81,7 @@ const LoginScreen = () => {
       }}>
       <View style={styles.screen_color_layer}>
         <View style={styles.screen} />
-        <LoginForm />
+        <LoginForm navigation={props.navigation} route={props.route} />
       </View>
     </ImageBackground>
   );

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     marginTop: -5,
   },
 });
-type Props = NativeStackScreenProps<RootStackParamList, 'Welcome'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Menu'>;
 
 const MenuScreen = () => (
   <View style={styles.screen}>

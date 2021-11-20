@@ -5,9 +5,9 @@ export interface LoginResponse {
 }
 
 export interface User {
-  id: number;
-  name: string;
-  photo: string;
+  id?: number;
+  name?: string;
+  photo?: string;
 }
 
 export class Convert {
