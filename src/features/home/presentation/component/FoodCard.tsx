@@ -52,29 +52,28 @@ const style = StyleSheet.create({
   },
 });
 
-const Category = () => (
-  <View style={style.category}>
-    <Text style={style.category_text}>Pasta</Text>
-  </View>
-);
+interface FoodCardProps {
+  name: string;
+  price: number;
+  photo: string;
+  description: string;
+}
 
-const FoodName = () => (
-  <View style={style.food_info}>
-    <Text style={style.food_name}>Sphageti with shrimp sauce</Text>
-    <Text style={style.food_price}>Rp. 15 000 ,-</Text>
-  </View>
-);
-
-const FoodCard = () => (
+const FoodCard = (props: FoodCardProps) => (
   <View style={style.container}>
     <ImageBackground
       borderRadius={10}
       style={style.image}
       source={{
-        uri: 'https://images.unsplash.com/photo-1532980400857-e8d9d275d858?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80',
+        uri: props.photo,
       }}>
-      <Category />
-      <FoodName />
+      <View style={style.category}>
+        <Text style={style.category_text}>{props.name}</Text>
+      </View>
+      <View style={style.food_info}>
+        <Text style={style.food_name}>{props.name}</Text>
+        <Text style={style.food_price}>Rp. {props.price} ,-</Text>
+      </View>
     </ImageBackground>
   </View>
 );

@@ -1,9 +1,9 @@
+import Route from 'config/Route';
+import {AuthContext} from 'core/context/AuthProvider';
+import {User} from 'features/login/data/entities/LoginResponse';
 import React, {useState} from 'react';
 import {StatusBar, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {AuthContext} from './src/core/context/AuthProvider';
-import {User} from './src/features/login/data/entities/LoginResponse';
-import Route from './Route';
 
 const style = StyleSheet.create({
   safeArea: {

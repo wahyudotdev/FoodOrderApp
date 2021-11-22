@@ -1,7 +1,7 @@
-import {Failure} from 'src/core/error/failure';
-import {Either} from 'src/core/usecases/Either';
-import {Params, UseCase} from 'src/core/usecases/UseCase';
-import {User} from '../../data/entities/LoginResponse';
+import {Failure} from 'core/error/failure';
+import {Either} from 'core/usecases/Either';
+import {Params, UseCase} from 'core/usecases/UseCase';
+import {User} from 'features/login/data/entities/LoginResponse';
 import {LoginRepository} from '../repositories/LoginRepository';
 
 export class GetUserParams implements Params {

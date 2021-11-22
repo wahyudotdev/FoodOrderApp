@@ -1,11 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {RootStackParamList} from '../../../../../Route';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import HomeScreen from '../../../home/presentation/screen/Home';
 import ProfileScreen from '../../../profile/presentation/screen/ProfileScreen';
 import {IconButton} from 'react-native-paper';
+import {RootStackParamList} from 'config/Route';
 
 const Tab = createMaterialBottomTabNavigator();
 const styles = StyleSheet.create({

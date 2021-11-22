@@ -4,8 +4,8 @@ import {AuthContext, UserLogin} from '../../../../core/context/AuthProvider';
 import {primary} from '../../../../config/Pallete';
 import {AppButton} from '../components/AppButton';
 import TextFormField from '../components/TextFormField';
-import {RootStackParamList} from 'Route';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from 'config/Route';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Welcome'>;
 

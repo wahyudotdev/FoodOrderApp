@@ -1,8 +1,8 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from 'config/Route';
 import React from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import {RootStackParamList} from '../../../../../Route';
 import {AppButton} from '../components/AppButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Welcome'>;

@@ -1,6 +1,8 @@
-import React, {useContext} from 'react';
+import {AuthContext} from 'core/context/AuthProvider';
+import {Food} from 'features/home/data/entities/FoodList';
+import {getFoodList} from 'features/home/domain/usecases/FoodUsecase';
+import React, {useContext, useEffect, useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {AuthContext} from '../../../../core/context/AuthProvider';
 import FoodCard from '../component/FoodCard';
 import Searchbar from '../component/SearchBar';
 import Trivia from '../component/Trivia';
@@ -44,12 +46,35 @@ const styles = StyleSheet.create({
   },
 });
 
-const FoodGroup = () => (
-  <View style={styles.food_group}>
-    <FoodCard />
-    <FoodCard />
-  </View>
-);
+const FoodGroup = () => {
+  let [foods, setFoods] = useState<Food[]>([]);
+  useEffect(() => {
+    const getFoods = async () => {
+      let result = await getFoodList();
+      if (result.isRight()) {
+        setFoods(result.value);
+      }
+    };
+    getFoods();
+  }, []);
+  return (
+    <View style={styles.food_group}>
+      {foods.length > 0 ? (
+        foods.map(food => (
+          <FoodCard
+            key={food.id}
+            name={food.name}
+            price={food.price}
+            photo={food.photo}
+            description={food.description}
+          />
+        ))
+      ) : (
+        <Text>Empty</Text>
+      )}
+    </View>
+  );
+};
 
 const HomeScreen = () => {
   const {user} = useContext(AuthContext);

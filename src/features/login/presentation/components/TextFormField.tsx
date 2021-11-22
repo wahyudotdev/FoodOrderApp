@@ -1,7 +1,7 @@
+import {primary} from 'config/Pallete';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {TextInput} from 'react-native-paper';
-import {primary} from '../../../../config/Pallete';
 
 const styles = StyleSheet.create({
   text_input_container: {

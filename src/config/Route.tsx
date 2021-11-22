@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import WelcomeScreen from './src/features/login/presentation/screen/WelcomeScreen';
-import MenuScreen from './src/features/menu/presentation/screen/MenuScreen';
-import LoginScreen from './src/features/login/presentation/screen/LoginScreen';
+import WelcomeScreen from '../features/login/presentation/screen/WelcomeScreen';
+import MenuScreen from '../features/menu/presentation/screen/MenuScreen';
+import LoginScreen from '../features/login/presentation/screen/LoginScreen';
 
 export type RootStackParamList = {
   Welcome: undefined;

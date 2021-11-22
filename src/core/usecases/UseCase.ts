@@ -6,3 +6,5 @@ export interface UseCase<T, Params> {
 }
 
 export interface Params {}
+
+export class NoParams implements Params {}
